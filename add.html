@@ -17,6 +17,41 @@
 </head>
 
 <body>
+<form class="text-center border border-light p-5" action="#!">
 
+    <p class="h4 mb-4">reminber</p>
+
+  
+
+  
+    <!-- Message -->
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+    </div>
+
+  
+
+    <!-- Send button -->
+    <button class="btn btn-info btn-block" type="submit">submit</button>
+
+</form>
+<!-- Default form contact -->
+<script>
+     $(document).ready(function(){
+        $("button").click(function(){
+            $.ajax({
+            url: '/api/v1/reminders',
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({message: 'Hello from client!'}),
+            success: (data) => {
+                console.log(data);
+            }
+        });
+    });
+});
+      
+</script>
 </body>
 </html>

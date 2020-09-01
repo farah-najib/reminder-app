@@ -2,6 +2,24 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sendSms = require('./twilio');
 
+const {
+  Sequelize,
+  Model,
+  DataTypes
+} = require('sequelize');
+const sequelize = new Sequelize('sqlite::memory:');
+
+
+class Reminders extends Model {}
+Reminders.init({
+  name: DataTypes.STRING
+}, {
+  sequelize,
+  modelName: 'reminders'
+});
+sequelize.sync();
+
+
 const app = express();
 
 app.use(bodyParser.urlencoded({
@@ -18,11 +36,20 @@ app.get('/', function (req, res) {
 })
 
 
+app.get('/add', function (req, res) {
+  res.sendFile(__dirname + '/add.html')
+})
+
 app.get('/api/v1/reminders', function (req, res) {
-  let x = [];
-  res.json({
-    sucess: true,
-    data: x
+  Reminders.findAll().then(data => {
+    res.json({
+      sucess: true,
+      data: data
+    });
+  }).catch(err => {
+    res.status(500).send({
+      message: err.message || "Some error occurred while creating the reminder."
+    });
   });
 
 })
@@ -45,10 +72,24 @@ app.delete('/api/v1/reminders/:id', function (req, res) {
 })
 app.post('/api/v1/reminders', function (req, res) {
 
-  res.json({
-    sucess: true,
-    data: req.body
-  });
+  const reminder = {
+    name: req.body.name
+  };
+
+  Reminders.create(reminder)
+    .then(data => {
+      res.json({
+        sucess: true,
+        data: data
+      });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the reminder."
+      });
+    });
+
+
 })
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
