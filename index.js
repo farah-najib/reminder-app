@@ -7,8 +7,8 @@ const {
   Model,
   DataTypes
 } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
-
+const sequelize = new Sequelize('sqlite');
+var sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 class Reminders extends Model {}
 Reminders.init({
