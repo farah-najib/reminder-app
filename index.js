@@ -2,45 +2,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sendSms = require('./twilio');
 
-const {
-  Sequelize,
-  Model,
-  DataTypes
-} = require('sequelize');
-const sequelize = new Sequelize('sqlite');
-var sequelize = new Sequelize(config.database, config.username, config.password, config);
-
-class Reminders extends Model {}
-Reminders.init({
-  name: DataTypes.STRING
-}, {
-  sequelize,
-  modelName: 'reminders'
-});
-sequelize.sync();
-
-
 const app = express();
-
+const port = 3000;
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 
 app.use(bodyParser.json());
-
-const port = 3000;
-
+require("./routers/reminderRoutes")(app);
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/main.html')
 })
 
-
 app.get('/add', function (req, res) {
   res.sendFile(__dirname + '/add.html')
 })
-
-app.get('/api/v1/reminders', function (req, res) {
+/*app.get('/api/v1/reminders', function (req, res) {
   Reminders.findAll().then(data => {
     res.json({
       sucess: true,
@@ -90,7 +68,7 @@ app.post('/api/v1/reminders', function (req, res) {
     });
 
 
-})
+})*/
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
