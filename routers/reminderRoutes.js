@@ -13,8 +13,11 @@ module.exports = function(router) {
     Reminders.create({
       name: req.body.name
     })
-      .then(res => {
-        res.json(res);
+      .then(data  => {
+        res.json({
+          sucess: true,
+          data: data
+        });
       })
       .catch(err => res.json(err));
   });
