@@ -40,11 +40,11 @@
      $(document).ready(function(){
         $("button").click(function(){
             $.ajax({
-            url: '/api/v1/reminders',
+            url: 'reminderp',
             type: 'POST',
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify({message: 'Hello from client!'}),
+            data: JSON.stringify({name:$('#exampleFormControlTextarea2').val() }),
             success: (data) => {
                 console.log(data);
             }
