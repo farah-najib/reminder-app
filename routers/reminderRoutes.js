@@ -1,5 +1,5 @@
 const Reminders = require("./../models").Reminders;
-const sendSms = require('./../twilio');
+const sendSms = require('../services/twilio');
 module.exports = function(router) {
   router.get("/reminder", (req, res) => {
     Reminders.findAll({
