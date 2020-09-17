@@ -15,8 +15,8 @@ module.exports = function(router) {
       name: req.body.name
     })
       .then(data  => {
-        const welcomeMessage = 'Welcome to my ReminderApp';
-        sendSms("60182988115", welcomeMessage);
+       const confirmationmessages = 'Welcome to my ReminderApp';   
+        sendSms(process.env.RECIEVER_PHONE_NUMBER, confirmationmessages);
         res.json({
           sucess: true,
           data: data
