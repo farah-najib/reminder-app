@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
+//setting middleware
+app.use(express.static('css'));
 
 app.use(bodyParser.urlencoded({
   extended: false
