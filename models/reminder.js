@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const user = require('./user');
 module.exports = (sequelize, DataTypes) => {
   class reminder extends Model {
     /**
@@ -11,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      reminder.belongsTo(user);
     }
   };
   reminder.init({
