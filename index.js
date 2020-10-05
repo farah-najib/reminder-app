@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 //setting middleware
 app.use(express.static('css'));
+app.use(express.static('js'));
 
 app.use(bodyParser.urlencoded({
   extended: false

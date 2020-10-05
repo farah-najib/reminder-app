@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-3 register-left">
                 <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-                <h3>HI</h3>
+                <h3>welcome</h3>
                 <p>Reminder!</p>
                 <input type="submit" name="" value="Login" /><br />
             </div>
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
                             </div>
-                            <input type="submit" id="button" class="btnRegister" value="Register" />
+                            <input type="submit" id="button8" class="btnRegister" value="Register" />
                         </div>
                     </div>
                 </div>
@@ -103,28 +103,7 @@
                     <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
                         placeholder="Message"></textarea>
                 </div>
-                <script>
-                    $(document).ready(function () {
-                        $("button").click(function () {
-                            $.ajax({
-                                url: 'reminder',
-                                type: 'POST',
-                                contentType: 'application/json',
-                                dataType: 'json',
-                                data: JSON.stringify({
-                                    firstname: $('#firstname').val(),
-                                    lastname: $('#lastname').val(),
-                                    email: $('#email').val(),
-                                    phone: $('#phone').val()
-                                }),
-                                success: (data) => {
-
-                                    console.log(data);
-                                }
-                            });
-                        });
-                    });
-                </script>
+                <script type="text/javascript" src="jsfile.js"> </script>
 </body>
 
 </html>
