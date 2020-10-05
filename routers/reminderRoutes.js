@@ -5,13 +5,13 @@ module.exports = function(router) {
     Reminder.findAll({
       
     })
-      .then(Reminders => {
-        res.json(Reminders);
+      .then(user => {
+        res.json(user);
       })
       .catch(err => res.json(err));
   });
   router.post("/reminder", (req, res) => {
-    Reminders.create({
+    Reminder.create({
       name: req.body.name,
       lastname:req.body.lastname,
       email:req.body.email,
