@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 require("./routers/viewRoutes")(app);
-//require("./routers/reminderRoutes")(app);
+require("./routers/reminderRoutes")(app);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -1,4 +1,4 @@
-/*const Reminder = require("./../models").user;
+const Reminder = require("./../models").user;
 const sendSms = require('../services/twilio');
 module.exports = function(router) {
   router.get("/reminder", (req, res) => {
@@ -12,7 +12,10 @@ module.exports = function(router) {
   });
   router.post("/reminder", (req, res) => {
     Reminders.create({
-      name: req.body.name
+      name: req.body.name,
+      lastname:req.body.lastname,
+      email:req.body.email,
+      phone:req.body.phone
     })
       .then(data  => {
        const confirmationmessages = 'Welcome to my ReminderApp';   
@@ -24,4 +27,4 @@ module.exports = function(router) {
       })
       .catch(err => res.json(err));
   });
-};*/
+};
